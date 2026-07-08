@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Ticket Details</h2>
+
+<div class="card">
+
+<div class="card-body">
+
+<h4>{{ ticket.title }}</h4>
+
+<hr>
+
+<p>
+<strong>Description</strong><br>
+{{ ticket.description }}
+</p>
+
+<p>
+<strong>Priority</strong><br>
+{{ ticket.priority }}
+</p>
+
+<p>
+
+<strong>Status</strong>
+
+<br>
+
+{% if ticket.status == "Open" %}
+<span class="badge bg-danger">Open</span>
+
+{% elif ticket.status == "In Progress" %}
+<span class="badge bg-warning text-dark">
+In Progress
+</span>
+
+{% else %}
+<span class="badge bg-success">
+Resolved
+</span>
+
+{% endif %}
+
+</p>
+
+<hr>
+
+<h5>Update Status</h5>
+
+<a href="{{ url_for('tickets.update_status',
+ticket_id=ticket.id,
+status='Open') }}"
+class="btn btn-danger">
+
+Open
+
+</a>
+
+<a href="{{ url_for('tickets.update_status',
+ticket_id=ticket.id,
+status='In Progress') }}"
+class="btn btn-warning">
+
+In Progress
+
+</a>
+
+<a href="{{ url_for('tickets.update_status',
+ticket_id=ticket.id,
+status='Resolved') }}"
+class="btn btn-success">
+
+Resolved
+
+</a>
+<p>
+<strong>Created By</strong><br>
+{{ current_user.username }}
+</p>
+
+</div>
+
+</div>
+
+<br>
+
+<a href="{{ url_for('tickets.my_tickets') }}" class="btn btn-secondary">
+Back
+</a>
+
+{% endblock %}
+
