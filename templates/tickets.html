@@ -1,38 +1,34 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
+<head>
+    <title>My Tickets</title>
+</head>
 
-<h2>My Tickets</h2>
+<body>
 
-<a href="/tickets/create" class="btn btn-success mb-3">
+<h1>My Tickets</h1>
 
-+ New Ticket
-
+<a href="/">Dashboard</a> |
+<a href="{{ url_for('tickets.create_ticket') }}" class="btn btn-success">
+    Create Ticket
 </a>
+<hr>
 
-<table class="table table-bordered">
-
-<thead>
+<table border="1" cellpadding="10">
 
 <tr>
-
-<th>Title</th>
-
-<th>Priority</th>
-
-<th>Status</th>
-
-<th>Created</th>
-
+    <th>ID</th>
+    <th>Title</th>
+    <th>Priority</th>
+    <th>Status</th>
 </tr>
-
-</thead>
-
-<tbody>
 
 {% for ticket in tickets %}
 
 <tr>
+
+<td>{{ ticket.id }}</td>
 
 <td>{{ ticket.title }}</td>
 
@@ -40,14 +36,12 @@
 
 <td>{{ ticket.status }}</td>
 
-<td>{{ ticket.created_at.strftime("%d-%m-%Y") }}</td>
-
 </tr>
 
 {% endfor %}
 
-</tbody>
-
 </table>
 
-{% endblock %}
+</body>
+
+</html>

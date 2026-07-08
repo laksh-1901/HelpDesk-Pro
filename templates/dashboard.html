@@ -42,16 +42,16 @@
 
 <br>
 
-<a href="/tickets" class="btn btn-primary">
-
-View My Tickets
-
+<a href="{{ url_for('tickets.my_tickets') }}" class="btn btn-primary">
+    View My Tickets
 </a>
 
-<a href="/logout" class="btn btn-danger">
+<a href="{{ url_for('tickets.create_ticket') }}" class="btn btn-success">
+    Create Ticket
+</a>
 
-Logout
-
+<a href="{{ url_for('auth.logout') }}" class="btn btn-danger">
+    Logout
 </a>
 
 {% endblock %}

@@ -6,15 +6,18 @@ from models.ticket import Ticket
 
 tickets = Blueprint("tickets", __name__)
 
-
 @tickets.route("/tickets")
 @login_required
 def my_tickets():
 
-    ticket_list = Ticket.query.filter_by(user_id=current_user.id).order_by(Ticket.created_at.desc()).all()
+    tickets_list = Ticket.query.filter_by(
+        user_id=current_user.id
+    ).order_by(Ticket.id.desc()).all()
 
-    return render_template("tickets.html", tickets=ticket_list)
-
+    return render_template(
+        "tickets.html",
+        tickets=tickets_list
+    )
 
 @tickets.route("/tickets/create", methods=["GET", "POST"])
 @login_required
