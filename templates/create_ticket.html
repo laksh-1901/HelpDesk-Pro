@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Create Ticket</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>Title</label>
+
+<input
+class="form-control"
+name="title"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Description</label>
+
+<textarea
+class="form-control"
+name="description"
+rows="5"
+required></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Priority</label>
+
+<select
+class="form-select"
+name="priority">
+
+<option>Low</option>
+
+<option>Medium</option>
+
+<option>High</option>
+
+</select>
+
+</div>
+
+<button
+class="btn btn-primary">
+
+Create Ticket
+
+</button>
+
+</form>
+
+{% endblock %}

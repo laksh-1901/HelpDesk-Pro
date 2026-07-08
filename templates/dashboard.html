@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Welcome {{ current_user.username }}</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>{{ total }}</h3>
+
+<p>Total Tickets</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>{{ open_tickets }}</h3>
+
+<p>Open Tickets</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<a href="/tickets" class="btn btn-primary">
+
+View My Tickets
+
+</a>
+
+<a href="/logout" class="btn btn-danger">
+
+Logout
+
+</a>
+
+{% endblock %}

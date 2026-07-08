@@ -1,39 +1,50 @@
+from flask import Flask, render_template
 from flask_login import login_required, current_user
-from flask import Flask
-from flask_login import login_required, current_user
+
 from config import Config
 from extensions import db, login_manager
+
 from models.user import User
-from extensions import db, login_manager
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 db.init_app(app)
-
 login_manager.init_app(app)
-login_manager.login_view = "login"
+
+login_manager.login_view = "auth.login"
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-from models import *
+
 from routes.auth import auth
+from routes.tickets import tickets
+from models.ticket import Ticket
 
 app.register_blueprint(auth)
+app.register_blueprint(tickets)
+
 
 @app.route("/")
 @login_required
 def dashboard():
 
-    return f"""
-    <h2>Welcome, {current_user.username}!</h2>
+    total = Ticket.query.filter_by(user_id=current_user.id).count()
 
-    <p>Role: {current_user.role}</p>
+    open_tickets = Ticket.query.filter_by(
+        user_id=current_user.id,
+        status="Open"
+    ).count()
 
-    <a href="/logout">Logout</a>
-    """
+    return render_template(
+        "dashboard.html",
+        total=total,
+        open_tickets=open_tickets
+    )
+
 
 if __name__ == "__main__":
     with app.app_context():
