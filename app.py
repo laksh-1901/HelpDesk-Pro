@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 
 from config import Config
 from extensions import db, login_manager
+from routes.admin import admin
 
 from models.user import User
 
@@ -26,7 +27,7 @@ from models.ticket import Ticket
 
 app.register_blueprint(auth)
 app.register_blueprint(tickets)
-
+app.register_blueprint(admin)
 
 @app.route("/")
 @login_required

@@ -19,20 +19,17 @@ def my_tickets():
         tickets=tickets_list
     )
 
-@tickets.route("/tickets/<int:ticket_id>")
+@tickets.route("/ticket/<int:ticket_id>")
 @login_required
 def view_ticket(ticket_id):
 
     ticket = Ticket.query.get_or_404(ticket_id)
 
-    if ticket.user_id != current_user.id:
-        flash("Unauthorized access.")
-        return redirect(url_for("tickets.my_tickets"))
-
     return render_template(
-        "ticket_details.html",
+        "ticket_detail.html",
         ticket=ticket
     )
+
 
 @tickets.route("/tickets/<int:ticket_id>/status/<status>")
 @login_required

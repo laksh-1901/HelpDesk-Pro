@@ -19,4 +19,7 @@ class Ticket(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
-    user = db.relationship("User", backref="tickets")
+    user = db.relationship(
+    "User",
+    backref=db.backref("tickets", lazy=True)
+)

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header bg-dark text-white">
+
+        <h3>{{ ticket.title }}</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <p>
+
+            <strong>Description</strong>
+
+        </p>
+
+        <p>{{ ticket.description }}</p>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <strong>Priority</strong><br>
+
+                {{ ticket.priority }}
+
+            </div>
+
+            <div class="col-md-4">
+
+                <strong>Status</strong><br>
+
+                {{ ticket.status }}
+
+            </div>
+
+            <div class="col-md-4">
+
+                <strong>Created</strong><br>
+
+                {{ ticket.created_at.strftime("%d %b %Y %I:%M %p") }}
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <a href="/tickets" class="btn btn-secondary">
+
+            Back
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

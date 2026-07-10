@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>HelpDesk Pro</title>
 
@@ -11,7 +14,43 @@
 
 <body class="bg-light">
 
-<div class="container mt-5">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/">
+            HelpDesk Pro
+        </a>
+
+        <div>
+
+            {% if current_user.is_authenticated %}
+
+                <span class="text-white me-3">
+                    Welcome, {{ current_user.username }}
+                </span>
+
+                <a href="/" class="btn btn-outline-light btn-sm">
+                    Dashboard
+                </a>
+
+                <a href="/tickets" class="btn btn-outline-light btn-sm">
+                    Tickets
+                </a>
+
+                <a href="/logout" class="btn btn-danger btn-sm">
+                    Logout
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-4">
 
 {% with messages = get_flashed_messages() %}
 
@@ -19,9 +58,11 @@
 
 {% for message in messages %}
 
-<div class="alert alert-info">
+<div class="alert alert-success alert-dismissible fade show">
 
 {{ message }}
+
+<button class="btn-close" data-bs-dismiss="alert"></button>
 
 </div>
 
@@ -32,11 +73,11 @@
 {% endwith %}
 
 {% block content %}
-
 {% endblock %}
 
 </div>
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
+</body>
 </html>
