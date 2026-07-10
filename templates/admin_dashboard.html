@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Admin Dashboard</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+<div class="card">
+<div class="card-body text-center">
+<h3>{{ total_users }}</h3>
+<p>Users</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card">
+<div class="card-body text-center">
+<h3>{{ total_tickets }}</h3>
+<p>Tickets</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="card bg-danger text-white">
+<div class="card-body text-center">
+<h3>{{ open_tickets }}</h3>
+<p>Open</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="card bg-warning">
+<div class="card-body text-center">
+<h3>{{ progress_tickets }}</h3>
+<p>Progress</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-2">
+<div class="card bg-success text-white">
+<div class="card-body text-center">
+<h3>{{ resolved_tickets }}</h3>
+<p>Resolved</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<br>
+
+<form method="GET" class="row mb-4">
+
+<div class="col-md-4">
+<input
+type="text"
+name="search"
+class="form-control"
+placeholder="Search title">
+</div>
+
+<div class="col-md-3">
+<select name="status" class="form-select">
+
+<option value="">All Status</option>
+
+<option>Open</option>
+
+<option>In Progress</option>
+
+<option>Resolved</option>
+
+</select>
+</div>
+
+<div class="col-md-3">
+<select name="priority" class="form-select">
+
+<option value="">All Priority</option>
+
+<option>Low</option>
+
+<option>Medium</option>
+
+<option>High</option>
+
+</select>
+</div>
+
+<div class="col-md-2">
+
+<button class="btn btn-primary w-100">
+
+Search
+
+</button>
+
+</div>
+
+</form>
+
+<table class="table table-bordered table-striped">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>User</th>
+
+<th>Title</th>
+
+<th>Priority</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for ticket in tickets %}
+
+<tr>
+
+<td>{{ ticket.id }}</td>
+
+<td>{{ ticket.user.username }}</td>
+
+<td>{{ ticket.title }}</td>
+
+<td>{{ ticket.priority }}</td>
+
+<td>{{ ticket.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

@@ -54,4 +54,12 @@
     Logout
 </a>
 
+{% if current_user.role == "admin" %}
+
+<a href="{{ url_for('admin.dashboard') }}" class="btn btn-dark">
+Admin Dashboard
+</a>
+
+{% endif %}
+
 {% endblock %}
